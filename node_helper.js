@@ -9,9 +9,8 @@ const getData = async (self) => {
 };
 module.exports = NodeHelper.create({
   start: function () {
-    var self = this;
     console.log("Starting module: " + this.name);
-    const interval = setInterval(async () => {
+    setInterval(async () => {
       if (this.STOP_ID && this.CUSTOMER_ID) {
         const data = await getData(this);
         this.sendSocketNotification("STOPS_DATA", data);
