@@ -4,7 +4,7 @@ Module.register("MMM-CyRide", {
     this.page = 0;
     this.sendSocketNotification("MMM-CYRIDE-SET_CYRIDE_CONFIG", this.config);
     setInterval(() => {
-      this.updateDom();
+      this.updateDom(1000);
     }, 5000);
   },
   getDom: async function () {
