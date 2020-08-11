@@ -46,6 +46,7 @@ Module.register("MMM-CyRide", {
     if (!payload) {
       this.data = null;
       this.updateDom();
+      return;
     }
     payload.forEach((routePayload) => {
       upcomingBusses.push(
