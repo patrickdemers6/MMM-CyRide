@@ -49,13 +49,13 @@ Module.register("MMM-CyRide", {
     }
     payload.forEach((routePayload) => {
       upcomingBusses.push(
-        routePayload.Arrivals.filter((bus, i) => bus.ArriveTime && i < 2)
+        routePayload.Arrivals.filter(({ ArriveTime }, i) => ArriveTime && i < 2)
       );
     });
     let routes = upcomingBusses.map((busStops) => {
       let minutesTill = [];
-      busStops.forEach((stop) => {
-        minutesTill.push(stop.Minutes);
+      busStops.forEach(({ Minutes }) => {
+        minutesTill.push(Minutes);
       });
       return {
         routeName: busStops[0].RouteName,
