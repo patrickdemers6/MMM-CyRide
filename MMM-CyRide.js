@@ -6,6 +6,7 @@ Module.register("MMM-CyRide", {
   getDom: async function () {
     if (!Array.isArray(this.data)) return;
     var wrapper = document.createElement("div");
+    wrapper.style = "text-align:left;max-width:300px;";
     const title = document.createElement("h6");
     title.innerHTML = "CYRIDE | UPCOMING STOPS";
     title.style = "margin:0px;";
@@ -31,7 +32,8 @@ Module.register("MMM-CyRide", {
 
       box.style = `height:20px;width:20px;background-color:${color};display:inline-block;`;
       header.innerHTML = route.routeName;
-      header.style = 'display:inline-block;margin-left:12px;margin-top:0px;margin-bottom:0px;'
+      header.style =
+        "display:inline-block;margin-left:12px;margin-top:0px;margin-bottom:0px;";
       container.appendChild(box);
       container.appendChild(header);
       container.appendChild(divider);
