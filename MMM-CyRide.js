@@ -26,15 +26,17 @@ Module.register("MMM-CyRide", {
         } | ${stop.ArriveTime}${stop.IsLastStop ? " - LAST STOP" : ""}`;
         detailsContainer.appendChild(timeDetails);
       });
+      let color = getColor(route.routeName);
+      const box = document.createElement("div");
 
+      box.style = `height:20px;width:20px;background-color:${color};display:inline-block;`;
+      header.innerHTML = route.routeName;
+      header.style = 'display:inline-block;margin-left:12px;margin-top:0px;margin-bottom:0px;'
+      container.appendChild(box);
       container.appendChild(header);
       container.appendChild(divider);
       container.appendChild(detailsContainer);
       wrapper.appendChild(container);
-      let color = getColor(route.routeName);
-      header.innerHTML =
-        `<div style="height:20px;width:20px;background-color:${color};display:inline-block;margin-left:10px;"/>` +
-        route.routeName;
     });
     return wrapper;
   },
