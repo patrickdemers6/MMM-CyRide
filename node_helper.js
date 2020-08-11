@@ -17,17 +17,16 @@ module.exports = NodeHelper.create({
     console.log("Starting module: " + this.name);
     setInterval(async () => {
       if (this.STOP_ID && this.CUSTOMER_ID) {
-        const data = await getData(this);
-        this.sendSocketNotification("MMM-CYRIDE-STOPS_DATA", data);
+        const upcomingStopsData = await getData(this);
+        this.sendSocketNotification("MMM-CYRIDE-STOPS_DATA", upcomingStopsData);
       }
     }, 1 * 60 * 1000);
   },
   socketNotificationReceived: async function (notification, payload) {
-    if (notification === "MMM-CYRIDE-SET_CYRIDE_CONFIG") {
-      this.STOP_ID = payload.stopID;
-      this.CUSTOMER_ID = payload.customerID;
-    }
-    const data = await getData(this);
-    this.sendSocketNotification("STOPS_DATA", data);
+    if (notification !== "MMM-CYRIDE-SET_CYRIDE_CONFIG") return;
+    this.STOP_ID = payload.stopID;
+    this.CUSTOMER_ID = payload.customerID;
+    const upcomingStopsData = await getData(this);
+    this.sendSocketNotification("MMM-CYRIDE-STOPS_DATA", upcomingStopsData);
   }
 });
