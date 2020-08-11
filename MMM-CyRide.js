@@ -39,9 +39,8 @@ Module.register("MMM-CyRide", {
     });
     return wrapper;
   },
-  socketNotificationReceived: function (notification, payload, sender) {
+  socketNotificationReceived: function (notification, payload) {
     if (notification !== "MMM-CYRIDE-STOPS_DATA") return;
-    console.log(notification, payload);
     let upcomingBusses = [];
     if (!payload) {
       this.data = null;
