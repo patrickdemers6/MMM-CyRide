@@ -25,7 +25,7 @@ Module.register("MMM-CyRide", {
       const divider = document.createElement("hr");
       divider.style = "margin-top:0px;margin-bottom:5px;";
       route.stops.forEach((stop) => {
-        if (stop.Time <= 0) return;
+        if (stop.Time <= 0 || stop.Time > 60) return;
         const timeDetails = document.createElement("p");
         timeDetails.style = "font-size:20px;margin:0px;line-height:normal;";
         timeDetails.innerHTML = `${stop.Time} min${
