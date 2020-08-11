@@ -80,7 +80,6 @@ Module.register("MMM-CyRide", {
       };
     });
     this.data = routes;
-    this.updateDom();
   }
 });
 const getColor = (routeName) => {
