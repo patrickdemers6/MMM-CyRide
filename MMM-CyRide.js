@@ -1,7 +1,11 @@
 Module.register("MMM-CyRide", {
   defaults: { stopID: "5108903", customerID: "187" },
   start: function () {
+    this.page = 0;
     this.sendSocketNotification("MMM-CYRIDE-SET_CYRIDE_CONFIG", this.config);
+    setInterval(() => {
+      this.updateDom();
+    }, 5000);
   },
   getDom: async function () {
     if (!Array.isArray(this.data)) return;
@@ -12,7 +16,8 @@ Module.register("MMM-CyRide", {
     title.style = "margin:0px;";
     wrapper.appendChild(title);
 
-    this.data.map((route) => {
+    this.data.map((route, i) => {
+      if (i % 2 !== this.page) return;
       const container = document.createElement("div");
       const header = document.createElement("h5");
       header.style = "margin:0px;";
@@ -20,6 +25,7 @@ Module.register("MMM-CyRide", {
       const divider = document.createElement("hr");
       divider.style = "margin-top:0px;margin-bottom:5px;";
       route.stops.forEach((stop) => {
+        if (stop.Time <= 0) return;
         const timeDetails = document.createElement("p");
         timeDetails.style = "font-size:20px;margin:0px;line-height:normal;";
         timeDetails.innerHTML = `${stop.Time} min${
@@ -40,6 +46,8 @@ Module.register("MMM-CyRide", {
       container.appendChild(detailsContainer);
       wrapper.appendChild(container);
     });
+    if (this.page === 1) this.page = 0;
+    else if (this.page === 0) this.page = 1;
     return wrapper;
   },
   socketNotificationReceived: function (notification, payload) {
