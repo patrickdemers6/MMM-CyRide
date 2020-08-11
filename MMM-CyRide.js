@@ -6,7 +6,7 @@ Module.register("MMM-CyRide", {
   getDom: async function () {
     if (!Array.isArray(this.data)) return;
     var wrapper = document.createElement("div");
-    wrapper.style = "text-align:left;max-width:300px;";
+    wrapper.style = "text-align:left;max-width:350px;";
     const title = document.createElement("h6");
     title.innerHTML = "CYRIDE | UPCOMING STOPS";
     title.style = "margin:0px;";
