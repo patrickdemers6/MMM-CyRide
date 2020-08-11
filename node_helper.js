@@ -13,12 +13,12 @@ module.exports = NodeHelper.create({
     setInterval(async () => {
       if (this.STOP_ID && this.CUSTOMER_ID) {
         const data = await getData(this);
-        this.sendSocketNotification("STOPS_DATA", data);
+        this.sendSocketNotification("MMM-CYRIDE-STOPS_DATA", data);
       }
     }, 1 * 60 * 1000);
   },
   socketNotificationReceived: async function (notification, payload) {
-    if (notification === "SET_CYRIDE_CONFIG") {
+    if (notification === "MMM-CYRIDE-SET_CYRIDE_CONFIG") {
       this.STOP_ID = payload.stopID;
       this.CUSTOMER_ID = payload.customerID;
     }

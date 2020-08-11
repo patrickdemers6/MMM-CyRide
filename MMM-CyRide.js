@@ -1,7 +1,7 @@
 Module.register("MMM-CyRide", {
   defaults: { stopID: "5108903", customerID: "187" },
   start: function () {
-    this.sendSocketNotification("SET_CYRIDE_CONFIG", this.config);
+    this.sendSocketNotification("MMM-CYRIDE-SET_CYRIDE_CONFIG", this.config);
   },
   getDom: async function () {
     if (!Array.isArray(this.data)) return;
@@ -82,7 +82,7 @@ Module.register("MMM-CyRide", {
     return wrapper;
   },
   socketNotificationReceived: function (notification, payload, sender) {
-    if (notification !== "STOPS_DATA") return;
+    if (notification !== "MMM-CYRIDE-STOPS_DATA") return;
     console.log(notification, payload);
     let upcomingBusses = [];
     payload.forEach((routePayload) => {
