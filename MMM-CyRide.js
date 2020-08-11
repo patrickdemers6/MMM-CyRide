@@ -18,13 +18,18 @@ Module.register("MMM-CyRide", {
 
     this.data.map((route, i) => {
       if (i % 2 !== this.page) return;
+      let upcomingStops = [];
+      route.stops.forEach((s) => {
+        if (s.Minutes >= 0 && s.Minutes < 60) upcomingStops.push(s);
+      });
+      if (upcomingStops.length === 0) return;
       const container = document.createElement("div");
       const header = document.createElement("h5");
       header.style = "margin:0px;";
       const detailsContainer = document.createElement("div");
       const divider = document.createElement("hr");
       divider.style = "margin-top:0px;margin-bottom:5px;";
-      route.stops.forEach((stop) => {
+      upcomingStops.forEach((stop) => {
         if (stop.Time <= 0 || stop.Time > 60) return;
         const timeDetails = document.createElement("p");
         timeDetails.style = "font-size:20px;margin:0px;line-height:normal;";
