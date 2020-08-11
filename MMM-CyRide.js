@@ -85,6 +85,10 @@ Module.register("MMM-CyRide", {
     if (notification !== "MMM-CYRIDE-STOPS_DATA") return;
     console.log(notification, payload);
     let upcomingBusses = [];
+    if (!payload) {
+      this.data = null;
+      this.updateDom();
+    }
     payload.forEach((routePayload) => {
       upcomingBusses.push(
         routePayload.Arrivals.filter((bus, i) => bus.ArriveTime && i < 2)

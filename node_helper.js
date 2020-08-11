@@ -1,11 +1,16 @@
 var NodeHelper = require("node_helper");
 const fetch = require("node-fetch");
 const getData = async (self) => {
-  const response = await fetch(
-    `https://mycyride.com/Stop/${self.STOP_ID}/Arrivals?customerID=${self.CUSTOMER_ID}`
-  );
-  const arrivals = await response.json();
-  return arrivals;
+  try {
+    const response = await fetch(
+      `https://mycyride.com/Stop/${self.STOP_ID}/Arrivals?customerID=${self.CUSTOMER_ID}`
+    );
+    const arrivals = await response.json();
+    return arrivals;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 };
 module.exports = NodeHelper.create({
   start: function () {
