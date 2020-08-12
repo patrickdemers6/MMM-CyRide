@@ -35,3 +35,8 @@ To find your stop's ID, use this website [on this website](https://mycyride.com/
 PRs welcome!
 
 To develop on your local machine, install this module like normal (you may like to clone your own fork's code). Then, start your magic mirror install by running `npm start &`. This will show node_helper output in the terminal. Then, access your magic mirror and make the magic happen!
+
+### Upcoming Features
+
+- [ ] Don't paginate when only one or two routes
+- [ ] Allow monitoring multiple stops
