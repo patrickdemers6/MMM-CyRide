@@ -46,7 +46,7 @@ Module.register("MMM-CyRide", {
 
       header.innerHTML = route.routeName;
       header.style =
-        "display:inline-block;margin-left:12px;margin-top:0px;margin-bottom:0px;";
+        "display:inline-block;margin-left:12px;margin-top:0px;margin-bottom:0px;text-overflow:ellipsis;white-space:nowrap;width:270px;overflow:hidden;vertical-align:bottom";
       container.appendChild(box);
       container.appendChild(header);
       container.appendChild(divider);
