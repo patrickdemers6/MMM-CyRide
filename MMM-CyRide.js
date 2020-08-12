@@ -5,7 +5,7 @@ Module.register("MMM-CyRide", {
     this.sendSocketNotification("MMM-CYRIDE-SET_CYRIDE_CONFIG", this.config);
     setInterval(() => {
       this.updateDom(1000);
-    }, 5000);
+    }, 5000); // cycle displayed data every 5 seconds
   },
   getDom: async function () {
     if (!Array.isArray(this.data)) return;
@@ -20,7 +20,7 @@ Module.register("MMM-CyRide", {
       if (i % 2 !== this.page) return;
       let upcomingStops = [];
       route.stops.forEach((s) => {
-        if (s.Minutes >= 0 && s.Minutes < 60) upcomingStops.push(s);
+        if (s.Minutes >= 0 && s.Minutes < 60) upcomingStops.push(s); // don't show stops with negative time or longer than an hour away
       });
       if (upcomingStops.length === 0) return;
       const container = document.createElement("div");
@@ -29,6 +29,7 @@ Module.register("MMM-CyRide", {
       const detailsContainer = document.createElement("div");
       const divider = document.createElement("hr");
       divider.style = "margin-top:0px;margin-bottom:5px;";
+
       upcomingStops.forEach((stop) => {
         if (stop.Time <= 0 || stop.Time > 60) return;
         const timeDetails = document.createElement("p");
@@ -38,10 +39,11 @@ Module.register("MMM-CyRide", {
         } | ${stop.ArriveTime}${stop.IsLastStop ? " - LAST STOP" : ""}`;
         detailsContainer.appendChild(timeDetails);
       });
+
       let color = getColor(route.routeName);
       const box = document.createElement("div");
-
       box.style = `height:20px;width:20px;background-color:${color};display:inline-block;`;
+
       header.innerHTML = route.routeName;
       header.style =
         "display:inline-block;margin-left:12px;margin-top:0px;margin-bottom:0px;";
@@ -83,6 +85,7 @@ Module.register("MMM-CyRide", {
   }
 });
 const getColor = (routeName) => {
+  // get color of route based on route number
   let color;
   switch (routeName.split(" ")[0]) {
     case "1":

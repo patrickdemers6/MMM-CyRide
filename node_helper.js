@@ -20,13 +20,13 @@ module.exports = NodeHelper.create({
         const upcomingStopsData = await getData(this);
         this.sendSocketNotification("MMM-CYRIDE-STOPS_DATA", upcomingStopsData);
       }
-    }, 1 * 60 * 1000);
+    }, 1 * 60 * 1000); // gets data from cyride every one minute
   },
   socketNotificationReceived: async function (notification, payload) {
     if (notification !== "MMM-CYRIDE-SET_CYRIDE_CONFIG") return;
     this.STOP_ID = payload.stopID;
     this.CUSTOMER_ID = payload.customerID;
-    const upcomingStopsData = await getData(this);
+    const upcomingStopsData = await getData(this); // get data on initial load
     this.sendSocketNotification("MMM-CYRIDE-STOPS_DATA", upcomingStopsData);
   }
 });
