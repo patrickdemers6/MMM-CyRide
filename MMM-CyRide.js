@@ -70,7 +70,7 @@ Module.register("MMM-CyRide", {
         routePayload.Arrivals.filter(({ ArriveTime }, i) => ArriveTime && i < 2)
       );
     });
-    let routes = upcomingBusses.map((busStops) => {
+    let stops = upcomingBusses.map((busStops) => {
       let minutesTill = [];
       busStops.forEach(({ Minutes }) => {
         minutesTill.push(Minutes);
@@ -81,7 +81,7 @@ Module.register("MMM-CyRide", {
         stops: busStops
       };
     });
-    this.data = routes;
+    this.data = stops;
   }
 });
 const getColor = (routeName) => {
